@@ -3,7 +3,7 @@ import os
 import pathlib
 from twilio.rest import Client
 
-Admin="Admin12345"
+Admin="Admin12345" #Admin Password
 
 class Account :
     accNo = 0
@@ -202,9 +202,9 @@ def modifyAccount(num):
         print("Data Updated\n")
 
 def sms(acc,opt,name,mob):
-    account_sid="AC08606eb6ab6df953f10b5227163eca49"
-    auth_token='71a4a3db3ecd3e424f7d35d6f05faa85'
-    my_phone_number='+919117434145'
+    account_sid="AC08606eb6ab6df953f10b5227163eca49" #Enter your api
+    auth_token='71a4a3db3ecd3e424f7d35d6f05faa85' #Enter your key
+    my_phone_number='+919117434145' #Enter your registered phone Number
     
     client=Client(account_sid, auth_token)
     if opt==1:
@@ -213,7 +213,7 @@ def sms(acc,opt,name,mob):
         User Name : {name}
         Account Number : {acc}
         Mobile Number : {mob}''',
-            from_='+14582545408',
+            from_='+14582545408', #Enter your given phone number
             to=my_phone_number
         )
         print(message.body)
@@ -224,7 +224,7 @@ def sms(acc,opt,name,mob):
         Account Number : {acc}
         User Name : {name}
         Mobile Number : {mob}''',
-            from_='+14582545408',
+            from_='+14582545408',  #Enter your given phone number
             to=my_phone_number
         )
         print(message.body)
@@ -235,7 +235,7 @@ def sms(acc,opt,name,mob):
         Account Number : {acc}
         User Name : {name}
         Mobile Number : {mob}''',
-            from_='+14582545408',
+            from_='+14582545408',  #Enter your given phone number
             to=my_phone_number
         )
         print(message.body)
@@ -285,18 +285,6 @@ def sms2(acc,opt,name,mob):
 ch=""
 num=0
 intro()
-info=int(input("\n\tPress 1 for know about this project\n\tPress 2 to skip\n\t"))
-if info==1:
-    print('''\n\tThe program you are currently using, is Bank Management System whose code is written by:
-                Ravi Raushan and Kshitij Raj
-                Branch : BTech CSE
-                Year : 1st
-                Section : C
-                Roll No. : 131 and 136
-          This program helps the bank to store the data of the customer and Customer can use it for
-          deposit, withdraw, money transfer, etc. This is very secured program means one customer
-          cannot use another customer account without account number and password. Only Admin can
-          access the password and details of all account.\n''')
 while ch != 8:
    print("\tMAIN MENU")
    print("\t1. NEW ACCOUNT")
