@@ -18,7 +18,6 @@ class Account :
         self.type = input("Enter the type of account [C/S] : ")
         self.deposit = int(input("Enter The Initial amount(>=500 for Saving and >=1000 for current : "))
         sms(self.accNo,1,self.name,self.mob)
-        sms2(self.accNo,1,self.name,self.mob)
         print("\n\n\nAccount Created")
     def showAccount(self):
         print("Account Number : ",self.accNo)
@@ -172,7 +171,6 @@ def deleteAccount(num):
                 newlist.append(item)
             else:
                 sms(num,6,item.name,item.mob)
-                sms2(num,6,item.name,item.mob)
         os.remove("accounts.data")
         outfile = open("accounts.data","wb")
         pickle.dump(newlist, outfile)
@@ -193,8 +191,7 @@ def modifyAccount(num):
                 item.password=input("Create new password : ")
                 item.type = input("Enter the account Type : ")
                 item.mob=int(input("Enter the mobile number : "))
-                sms(num,7,item.name,item.mob)
-                sms2(num,7,item.name,item.mob)     
+                sms(num,7,item.name,item.mob)     
         outfile = open("accounts.data","wb")
         pickle.dump(oldlist, outfile)
         outfile.close()
@@ -202,9 +199,9 @@ def modifyAccount(num):
         print("Data Updated\n")
 
 def sms(acc,opt,name,mob):
-    account_sid="AC08606eb6ab6df953f10b5227163eca49" #Enter your api
-    auth_token='71a4a3db3ecd3e424f7d35d6f05faa85' #Enter your key
-    my_phone_number='+919117434145' #Enter your registered phone Number
+    account_sid="api key" #Enter your api
+    auth_token='auth_token' #Enter your key
+    my_phone_number='[+country code][phone number]' #Enter your registered phone Number
     
     client=Client(account_sid, auth_token)
     if opt==1:
@@ -213,7 +210,7 @@ def sms(acc,opt,name,mob):
         User Name : {name}
         Account Number : {acc}
         Mobile Number : {mob}''',
-            from_='+14582545408', #Enter your given phone number
+            from_='given phone number', #Enter your given phone number
             to=my_phone_number
         )
         print(message.body)
@@ -224,7 +221,7 @@ def sms(acc,opt,name,mob):
         Account Number : {acc}
         User Name : {name}
         Mobile Number : {mob}''',
-            from_='+14582545408',  #Enter your given phone number
+            from_='given phone number',  #Enter your given phone number
             to=my_phone_number
         )
         print(message.body)
@@ -235,52 +232,11 @@ def sms(acc,opt,name,mob):
         Account Number : {acc}
         User Name : {name}
         Mobile Number : {mob}''',
-            from_='+14582545408',  #Enter your given phone number
+            from_='given phone number',  #Enter your given phone number
             to=my_phone_number
         )
         print(message.body)
         os.system('cls')
-
-def sms2(acc,opt,name,mob):
-    account_sid="AC4c5e9f9f9cbd041dcaf71c9e4669eeb7"
-    auth_token='d4b947248335141a93e36338b37e9626'
-    my_phone_number='+919135513414'
-    
-    client=Client(account_sid, auth_token)
-    if opt==1:
-        message=client.messages.create(
-            body=f'''\nNew Account created
-        User Name : {name}
-        Account Number : {acc}
-        Mobile Number : {mob}''',
-            from_='+12076002855',
-            to=my_phone_number
-        )
-        print(message.body)
-        os.system('cls')
-    elif opt==6:
-        message=client.messages.create(
-            body=f'''\nAccount Closed
-        Account Number : {acc}
-        User Name : {name}
-        Mobile Number : {mob}''',
-            from_='+12076002855',
-            to=my_phone_number
-        )
-        print(message.body)
-        os.system('cls')
-    elif opt==7:
-        message=client.messages.create(
-            body=f'''\nAccount Updated
-        Account Number : {acc}
-        User Name : {name}
-        Mobile Number : {mob}''',
-            from_='+12076002855',
-            to=my_phone_number
-        )
-        print(message.body)
-        os.system('cls')
-
 
 ch=""
 num=0
